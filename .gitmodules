@@ -1,0 +1,3 @@
+[submodule "vue-micro-chat"]
+	path = vue-micro-chat
+	url = git@github.com:maxxkoshechka/vue-micro-chat.git
