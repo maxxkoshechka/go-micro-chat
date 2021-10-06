@@ -1,7 +1,9 @@
 image: docker
 services:
   - docker: bind
-
+before_script:
+  - export
+  - docker login -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD} registry..gitlab.com
 build:
   script:
-    - docker build -t micro-chat
+    - docker build . -t micro-chat
