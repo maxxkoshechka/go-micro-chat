@@ -1,0 +1,11 @@
+services:
+  chat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runner
+    volumes:
+      - ./:/app
+    env_file: .env
+    ports:
+      - 8080:8080
