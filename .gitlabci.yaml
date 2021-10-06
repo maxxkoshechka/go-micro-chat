@@ -1,0 +1,7 @@
+image: docker
+services:
+  - docker: bind
+
+buld:
+  script:
+    - docker build -t micro-chat
