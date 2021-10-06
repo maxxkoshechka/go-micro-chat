@@ -2,6 +2,6 @@ image: docker
 services:
   - docker: bind
 
-buld:
+build:
   script:
     - docker build -t micro-chat
