@@ -11,7 +11,7 @@ COPY go.sum .
 RUN go mod download
 
 ADD . /app
-WORKDIR /app/src
+WORKDIR /app/cmd/app
 RUN go build -o main .
 
 FROM ubuntu:latest as runner
@@ -19,7 +19,8 @@ FROM ubuntu:latest as runner
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
 RUN mkdir /app
-WORKDIR /app/src
-COPY --from=builder /app/src/main main
+WORKDIR /app/cmd/app
+COPY --from=builder /app/cmd/app/main main
+
 
 CMD ["./main"]

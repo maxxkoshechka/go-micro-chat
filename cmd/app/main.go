@@ -4,6 +4,7 @@ import (
 	"flag"
 	"log"
 	"net/http"
+	"chat/internal"
 )
 
 var addr = flag.String("addr", ":8080", "http service address")
@@ -18,16 +19,16 @@ func serveHome(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
-	http.ServeFile(w, r, "home.html")
+	http.ServeFile(w, r, "../../resources/home.html")
 }
 
 func main() {
 	flag.Parse()
-	hub := newHub()
-	go hub.run()
+	hub := internal.NewHub()
+	go hub.Run()
 	http.HandleFunc("/", serveHome)
 	http.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
-		serveWs(hub, w, r)
+		internal.ServeWs(hub, w, r)
 	})
 	err := http.ListenAndServe(*addr, nil)
 	if err != nil {
