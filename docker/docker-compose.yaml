@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  db:
+    image: postgres
+    env_file:
+      - ../.env
+    volumes:
+      #- ./oscar-php/data/mysql:/var/lib/mysql
+      #- ./oscar-php/data/mysql_prod:/var/lib/mysql
+      #- ./oscar-php/data/mysql_dev:/var/lib/mysql
+      - ./db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432

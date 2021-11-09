@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: micro-chat-deployment
+  labels:
+    app: micro-chat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: micro-chat
+  template:
+    metadata:
+      labels:
+        app: micro-chat
+    spec:
+      containers:
+        - name: micro-chat
+          image: registry.gitlab.com/maxxkoshechka/micro-chat:6a268f8d
+          ports:
+            - containerPort: 8080
